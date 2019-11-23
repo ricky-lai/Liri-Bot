@@ -72,8 +72,8 @@ function Concerts(search) {
                 var venue = res.data[i].venue.name;
                 var location = res.data[i].venue.city + ", " + res.data[i].venue.region;
                 var date = moment(res.data[i].datetime).format("MMMM DD, YYYY");
-                var message =
-                    console.log(venue + " in " + location + " on " + date);
+
+                console.log(venue + " in " + location + " on " + date);
             }
             console.log("\n===");
         });
@@ -103,36 +103,37 @@ function Songs(search) {
         console.log("\n===");
 
         logFile(message);
-
-        function Movies(search) {
-            console.log("Finding movie...");
-
-            if (!search) {
-                search = "John Wick";
-            };
-
-            var queryURL = "https://www.omdbapi.com/?apikey=trilogy&t=" + search;
-
-            axios({
-                method: 'get',
-                url: queryURL
-            })
-                .then(function (res) {
-                    var title = res.data.Title;
-                    var year = res.data.Year;
-                    var imdb = res.data.Ratings[0].Value;
-                    var rotten = res.data.Ratings[1].Value;
-                    var country = res.data.Country;
-                    var language = res.data.Language;
-                    var plot = res.data.Plot;
-                    var actors = res.data.Actors;
-                    console.log("=New Movie=\n");
-                    console.log(`${title} (${year}): ${plot}. \nThe film was produced in ${country} and available in ${language}. Rated ${imdb} on IMDB and ${rotten} on Rotten Tomatoes. \nStarring: ${actors}. `)
-                    console.log("\n===");
-                });
-        }
-
-
-
-    })
+    });
 }
+
+
+function Movies(search) {
+    console.log("Finding movie...");
+
+    if (!search) {
+        search = "John Wick";
+    };
+
+    var queryURL = "https://www.omdbapi.com/?apikey=trilogy&t=" + search;
+
+    axios({
+        method: 'get',
+        url: queryURL
+    })
+        .then(function (res) {
+            var title = res.data.Title;
+            var year = res.data.Year;
+            var imdb = res.data.Ratings[0].Value;
+            var rotten = res.data.Ratings[1].Value;
+            var country = res.data.Country;
+            var language = res.data.Language;
+            var plot = res.data.Plot;
+            var actors = res.data.Actors;
+            console.log("=New Movie=\n");
+            console.log(`${title} (${year}): ${plot}. \nThe film was produced in ${country} and available in ${language}. Rated ${imdb} on IMDB and ${rotten} on Rotten Tomatoes. \nStarring: ${actors}. `)
+            console.log("\n===");
+        });
+}
+
+
+
